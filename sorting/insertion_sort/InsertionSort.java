@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class SelectionSort
+public class InsertionSort
 {
 
     public static void main(String[] args) {
@@ -13,7 +13,7 @@ public class SelectionSort
 
         System.out.println("\n");
 
-        System.out.println("Running SELECTION SORT on: ");
+        System.out.println("Running INSERTION SORT on: ");
         System.out.println(Arrays.toString(nums0));
         System.out.println(Arrays.toString(nums1));
         System.out.println(Arrays.toString(nums2));
@@ -40,20 +40,10 @@ public class SelectionSort
         System.out.println(Arrays.toString(nums5));
     }
 
+
     private static void sort(int[] nums) {
 
-        if (nums == null || nums.length < 2) return;
-
-        for (int i=0; i<nums.length-1; i++) {
-
-            for (int j=i+1; j<nums.length; j++) {
-                if (nums[j] < nums[i]) {
-                    int temp = nums[i];
-                    nums[i] = nums[j];
-                    nums[j] = temp;
-                }
-            }
-        }
+        return;
 
     }
 }
