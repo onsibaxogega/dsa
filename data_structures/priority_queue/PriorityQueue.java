@@ -73,8 +73,12 @@ class MaxHeap<T> {
         if (!(newNode.getClass().equals(this.type)))
             throw new IllegalArgumentException("Input must be of type: " + this.type);
 
-        this.nodes[++this.count] = newNode;
+        this.nodes[this.count++] = newNode;
         this.resize();
+    }
+
+    public T delMax() {
+
     }
 
     /** Resizes array of nodes when necessary */
