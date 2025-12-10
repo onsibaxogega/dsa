@@ -10,8 +10,13 @@ public class PriorityQueue<T> {
 
         MaxHeap<Integer> nums = new MaxHeap<Integer>();
 
-        nums.nodes[0] = 254;
-        System.out.println(Arrays.toString(nums.nodes));
+        nums.add(Integer.valueOf(254));
+        nums.add(Integer.valueOf(573));
+
+        // nums.add("Hello");
+        // nums.add("World");
+
+        System.out.println(nums);
         System.out.println("Running...");
         
         try{
@@ -32,11 +37,43 @@ public class PriorityQueue<T> {
 */
 class MaxHeap<T> {
 
-    T[] nodes;
+    private Object[] nodes;
+    private Class type;
 
     private final int MIN_SIZE = 8;
 
+    /* Number of nodes in the heap */
+    private int count;
+
     public MaxHeap() {
         this.nodes = new Object[MIN_SIZE];
+        this.count = 0;
+    }
+
+    public void add(Object newNode) {
+
+        if (this.type == null) {
+            this.type = newNode.getClass();
+            this.nodes[++this.count] = newNode;
+            return;
+        }
+
+        this.resize();
+
+        if (!(newNode.getClass().equals(this.type)))
+            throw new IllegalArgumentException("Input must be of type: " + this.type);
+
+        this.nodes[++this.count] = newNode;
+    }
+
+    /* Resizes array of nodes when necessary */
+    public void resize() {
+        return;
+    }
+
+
+    @Override
+    public String toString() {
+        return Arrays.toString(this.nodes);
     }
 }
