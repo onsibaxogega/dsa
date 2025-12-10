@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-/*
+/**
     - Priority Queue represented as a Max Heap
     - with Array implementation
 */
@@ -11,7 +11,17 @@ public class PriorityQueue<T> {
         MaxHeap<Integer> nums = new MaxHeap<Integer>();
 
         nums.add(Integer.valueOf(254));
+        System.out.println(nums);
         nums.add(Integer.valueOf(573));
+        System.out.println(nums);
+        nums.add(Integer.valueOf(217));
+        System.out.println(nums);
+        nums.add(Integer.valueOf(317));
+        System.out.println(nums);
+        nums.add(Integer.valueOf(67));
+        System.out.println(nums);
+        nums.add(Integer.valueOf(89));
+        System.out.println(nums);
 
         // nums.add("Hello");
         // nums.add("World");
@@ -29,7 +39,7 @@ public class PriorityQueue<T> {
 
 
 
-/*
+/**
     - Max Heap with Array implementation
     - Array is auto-resized such that elements occupy at least 1/4 of array of lenght 2^n with nMin = 3
         - Resize down when below 1/4 full
@@ -40,9 +50,9 @@ class MaxHeap<T> {
     private Object[] nodes;
     private Class type;
 
-    private final int MIN_SIZE = 8;
+    private final int MIN_SIZE = 4;
 
-    /* Number of nodes in the heap */
+    /** Number of nodes in the heap */
     private int count;
 
     public MaxHeap() {
@@ -50,6 +60,7 @@ class MaxHeap<T> {
         this.count = 0;
     }
 
+    /** Add a node to the max heap*/
     public void add(Object newNode) {
 
         if (this.type == null) {
@@ -58,17 +69,22 @@ class MaxHeap<T> {
             return;
         }
 
-        this.resize();
-
+        
         if (!(newNode.getClass().equals(this.type)))
             throw new IllegalArgumentException("Input must be of type: " + this.type);
 
         this.nodes[++this.count] = newNode;
+        this.resize();
     }
 
-    /* Resizes array of nodes when necessary */
+    /** Resizes array of nodes when necessary */
     public void resize() {
-        return;
+        
+        if (this.count > (this.nodes.length / 2))
+            this.nodes = Arrays.copyOf(this.nodes, this.nodes.length * 2);
+
+        if ((this.nodes.length > this.MIN_SIZE) && (this.count < (this.nodes.length / 4)))
+            this.nodes = Arrays.copyOf(this.nodes, this.nodes.length / 2);
     }
 
 
