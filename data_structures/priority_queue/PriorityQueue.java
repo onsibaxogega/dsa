@@ -26,6 +26,16 @@ public class PriorityQueue<T> {
         // nums.insert("Hello");
         // nums.insert("World");
 
+
+        System.out.println("Removed: " + nums.delMax());
+        System.out.println(nums);
+        System.out.println("Removed: " + nums.delMax());
+        System.out.println(nums);
+        System.out.println("Removed: " + nums.delMax());
+        System.out.println(nums);
+        System.out.println("Removed: " + nums.delMax());
+        System.out.println(nums);
+
         System.out.println(nums);
         System.out.println("Running...");
         
@@ -69,16 +79,32 @@ class MaxHeap<T> {
             return;
         }
 
-        
         if (!(newNode.getClass().equals(this.type)))
             throw new IllegalArgumentException("Input must be of type: " + this.type);
 
-        this.nodes[this.count++] = newNode;
+        this.nodes[++this.count] = newNode;
         this.resize();
     }
 
+    @SuppressWarnings("unchecked")
     public T delMax() {
 
+        T maxNode = null;
+
+        try{
+            maxNode = (T) this.nodes[this.count];
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+        if (!(maxNode == null)) {
+
+            this.nodes[this.count--] = null;
+            this.resize();
+        }
+
+        return maxNode;
     }
 
     /** Resizes array of nodes when necessary */
