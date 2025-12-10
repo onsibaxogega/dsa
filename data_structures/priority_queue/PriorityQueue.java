@@ -10,21 +10,21 @@ public class PriorityQueue<T> {
 
         MaxHeap<Integer> nums = new MaxHeap<Integer>();
 
-        nums.add(Integer.valueOf(254));
+        nums.insert(Integer.valueOf(254));
         System.out.println(nums);
-        nums.add(Integer.valueOf(573));
+        nums.insert(Integer.valueOf(573));
         System.out.println(nums);
-        nums.add(Integer.valueOf(217));
+        nums.insert(Integer.valueOf(217));
         System.out.println(nums);
-        nums.add(Integer.valueOf(317));
+        nums.insert(Integer.valueOf(317));
         System.out.println(nums);
-        nums.add(Integer.valueOf(67));
+        nums.insert(Integer.valueOf(67));
         System.out.println(nums);
-        nums.add(Integer.valueOf(89));
+        nums.insert(Integer.valueOf(89));
         System.out.println(nums);
 
-        // nums.add("Hello");
-        // nums.add("World");
+        // nums.insert("Hello");
+        // nums.insert("World");
 
         System.out.println(nums);
         System.out.println("Running...");
@@ -61,7 +61,7 @@ class MaxHeap<T> {
     }
 
     /** Add a node to the max heap*/
-    public void add(Object newNode) {
+    public void insert(Object newNode) {
 
         if (this.type == null) {
             this.type = newNode.getClass();
