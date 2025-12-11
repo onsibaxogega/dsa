@@ -23,8 +23,8 @@ public class PriorityQueue<T> {
         nums.insert(Integer.valueOf(89));
         System.out.println(nums);
 
-        // nums.insert("Hello");
-        // nums.insert("World");
+        nums.insert("Hello");
+        nums.insert("World");
 
 
         System.out.println("Removed: " + nums.delMax());
@@ -35,15 +35,9 @@ public class PriorityQueue<T> {
         System.out.println(nums);
         System.out.println("Removed: " + nums.delMax());
         System.out.println(nums);
-
+        System.out.println("Removed: " + nums.delMax());
         System.out.println(nums);
-        System.out.println("Running...");
-        
-        try{
-            Thread.sleep(3000);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+
     }
 }
 
@@ -62,7 +56,10 @@ class MaxHeap<T> {
 
     private final int MIN_SIZE = 4;
 
-    /** Number of nodes in the heap */
+    /**
+     * Number of nodes in the heap
+     * Also index of the last node, because index 0 is left null to simplify binary tree navigability
+    */
     private int count;
 
     public MaxHeap() {
