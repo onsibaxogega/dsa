@@ -23,8 +23,8 @@ public class PriorityQueue<T> {
         nums.insert(Integer.valueOf(89));
         System.out.println(nums);
 
-        nums.insert("Hello");
-        nums.insert("World");
+        // nums.insert("Hello");
+        // nums.insert("World");
 
 
         System.out.println("Removed: " + nums.delMax());
@@ -49,7 +49,7 @@ public class PriorityQueue<T> {
         - Resize down when below 1/4 full
         - Resize up when half full
 */
-class MaxHeap<T> {
+class MaxHeap<T extends Comparable> {
 
     private Object[] nodes;
     private Class type;
@@ -112,6 +112,24 @@ class MaxHeap<T> {
 
         if ((this.nodes.length > this.MIN_SIZE) && (this.count < (this.nodes.length / 4)))
             this.nodes = Arrays.copyOf(this.nodes, this.nodes.length / 2);
+    }
+
+    
+    /** Iteratively swap max node with largest child larger than it */
+    private void sink(int target) {
+
+        int lc, rc, candidate;
+
+        while (target * 2 <= count) {
+
+            lc = target * 2;
+            rc = target * 2 + 1;
+
+            if ((this.nodes[lc] == null) && (this.nodes[rc] == null)) break;
+
+            candidate = ((this.nodes[lc] == null) || (this.nodes[lc].compareTo(this.nodes[rc]) > 0)) ? rc : lc;
+
+        }
     }
 
 
