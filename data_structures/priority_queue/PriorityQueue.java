@@ -89,7 +89,7 @@ class MaxHeap<T extends Comparable> {
         T maxNode = null;
 
         try{
-            maxNode = (T) this.nodes[this.count];
+            maxNode = (T) this.nodes[1];
         }
         catch(Exception e){
             e.printStackTrace();
@@ -97,7 +97,9 @@ class MaxHeap<T extends Comparable> {
 
         if (!(maxNode == null)) {
 
+            this.nodes[1] = this.nodes[count];
             this.nodes[this.count--] = null;
+            this.sink(1);
             this.resize();
         }
 
@@ -121,14 +123,23 @@ class MaxHeap<T extends Comparable> {
 
         int lc, rc, candidate;
 
-        while (target * 2 <= count) {
+        System.out.println("\nDEBUG: Starting sink() ...");
+        while (target * 2 <= this.count) {
 
             lc = target * 2;
             rc = target * 2 + 1;
 
             if ((this.nodes[lc] == null) && (this.nodes[rc] == null)) break;
 
-            candidate = ((this.nodes[lc] == null) || (this.nodes[lc].compareTo(this.nodes[rc]) > 0)) ? rc : lc;
+            if (this.nodes[rc] == null) candidate = lc;
+            else candidate = ((this.nodes[lc] == null) || (this.nodes[lc].compareTo(this.nodes[rc]) < 0)) ? rc : lc;
+
+            if(!(this.nodes[candidate].compareTo(this.nodes[target]) > 0)) break;
+
+            Comparable temp = this.nodes[target];
+            this.nodes[target] = this.nodes[candidate];
+            this.nodes[candidate] = temp;
+            target = candidate;
 
         }
     }
