@@ -27,15 +27,15 @@ public class PriorityQueue<T> {
         // nums.insert("World");
 
 
-        System.out.println("Removed: " + nums.delMax());
+        nums.delMax();
         System.out.println(nums);
-        System.out.println("Removed: " + nums.delMax());
+        nums.delMax();
         System.out.println(nums);
-        System.out.println("Removed: " + nums.delMax());
+        nums.delMax();
         System.out.println(nums);
-        System.out.println("Removed: " + nums.delMax());
+        nums.delMax();
         System.out.println(nums);
-        System.out.println("Removed: " + nums.delMax());
+        nums.delMax();
         System.out.println(nums);
 
     }
@@ -70,19 +70,21 @@ class MaxHeap<T extends Comparable> {
     /** Add a node to the max heap*/
     public void insert(Comparable newNode) {
 
-        if (this.type == null) {
-            this.type = newNode.getClass();
-            this.nodes[++this.count] = newNode;
-            return;
+        if (this.type == null) this.type = newNode.getClass();
+
+        else {
+            if (!(newNode.getClass().equals(this.type)))
+            throw new IllegalArgumentException("Input must be of type: " + this.type);
         }
 
-        if (!(newNode.getClass().equals(this.type)))
-            throw new IllegalArgumentException("Input must be of type: " + this.type);
-
         this.nodes[++this.count] = newNode;
+        this.swim(this.count);
         this.resize();
+
+        System.out.println("\nInserting: " + newNode);
     }
 
+    /** Remove and return node at top of heap, aka node with max value, and reorganize heap */
     @SuppressWarnings("unchecked")
     public T delMax() {
 
@@ -103,6 +105,7 @@ class MaxHeap<T extends Comparable> {
             this.resize();
         }
 
+        System.out.println("\nRemoving: " + maxNode);
         return maxNode;
     }
 
@@ -140,6 +143,25 @@ class MaxHeap<T extends Comparable> {
             this.nodes[candidate] = temp;
             target = candidate;
 
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void swim(int target) {
+
+        int candidate;
+        
+        while (target > 1) {
+
+            candidate = target / 2;
+
+            if (!(this.nodes[target].compareTo(this.nodes[candidate]) > 0)) break;
+
+            Comparable temp = this.nodes[target];
+            this.nodes[target] = this.nodes[candidate];
+            this.nodes[candidate] = temp;
+
+            target = candidate;
         }
     }
 
