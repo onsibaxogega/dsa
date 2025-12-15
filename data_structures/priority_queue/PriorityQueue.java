@@ -51,7 +51,7 @@ public class PriorityQueue<T> {
 */
 class MaxHeap<T extends Comparable> {
 
-    private Object[] nodes;
+    private Comparable[] nodes;
     private Class type;
 
     private final int MIN_SIZE = 4;
@@ -63,12 +63,12 @@ class MaxHeap<T extends Comparable> {
     private int count;
 
     public MaxHeap() {
-        this.nodes = new Object[MIN_SIZE];
+        this.nodes = new Comparable[MIN_SIZE];
         this.count = 0;
     }
 
     /** Add a node to the max heap*/
-    public void insert(Object newNode) {
+    public void insert(Comparable newNode) {
 
         if (this.type == null) {
             this.type = newNode.getClass();
@@ -116,6 +116,7 @@ class MaxHeap<T extends Comparable> {
 
     
     /** Iteratively swap max node with largest child larger than it */
+    @SuppressWarnings("unchecked")
     private void sink(int target) {
 
         int lc, rc, candidate;
