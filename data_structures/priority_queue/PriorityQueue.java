@@ -123,7 +123,6 @@ class MaxHeap<T extends Comparable> {
 
         int lc, rc, candidate;
 
-        System.out.println("\nDEBUG: Starting sink() ...");
         while (target * 2 <= this.count) {
 
             lc = target * 2;
@@ -132,7 +131,7 @@ class MaxHeap<T extends Comparable> {
             if ((this.nodes[lc] == null) && (this.nodes[rc] == null)) break;
 
             if (this.nodes[rc] == null) candidate = lc;
-            else candidate = ((this.nodes[lc] == null) || (this.nodes[lc].compareTo(this.nodes[rc]) < 0)) ? rc : lc;
+            else candidate = ((this.nodes[lc] == null) || (this.nodes[rc].compareTo(this.nodes[lc]) > 0)) ? rc : lc;
 
             if(!(this.nodes[candidate].compareTo(this.nodes[target]) > 0)) break;
 
